@@ -5,7 +5,37 @@ import StudentCard from './StudentCard';
 import Navbar from './Navbar';
 import AddStudent from './AddStudent';  
 import studentsData from './assets/students.json';
+import { useState} from 'react';
 
+const AddStudent = ({ handleAddStudent }) => {
+
+    const handleStudent = (event) => {
+        event.preventDefault();
+        handleAddStudent({
+            ...FormData,
+        });
+        
+    };
+    
+    const [FormData, setFormData] = useState({
+        fullName: '',
+        email: '',
+        phone: '',
+        program: '',
+        image: '',
+        graduationYear: '',
+        graduated: false,
+    });
+
+    const handleChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: type === 'checkbox' ? checked : value,
+        }));
+    };        
+    }
+    
 function App() {
   const [students, setStudents] = useState(studentsData);
 
